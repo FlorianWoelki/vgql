@@ -1,6 +1,7 @@
 import * as inquirer from 'inquirer';
 import * as fs from 'fs';
 import { projectInstall } from 'pkg-install';
+import Listr from 'listr';
 
 const frontendChoices = fs.readdirSync(`${__dirname}/../templates/front-end`);
 
@@ -24,7 +25,7 @@ const QUESTIONS = [
 
 const CURR_DIR = process.cwd();
 
-inquirer.prompt(QUESTIONS).then((answers: any) => {
+inquirer.prompt(QUESTIONS).then(async (answers: any) => {
   const projectChoice = answers['frontend-choice'];
   const projectName = answers['project-name'];
   const templatePath = `${__dirname}/../templates/front-end/${projectChoice}`;
@@ -34,9 +35,18 @@ inquirer.prompt(QUESTIONS).then((answers: any) => {
 
   createDirectoryContents(templatePath, projectName);
 
-  projectInstall({
-    cwd: destination,
-  });
+  const tasks = new Listr([
+    {
+      title: 'Install dependencies',
+      task: () => {
+        projectInstall({
+          cwd: destination,
+        });
+      },
+    }
+  ]);
+
+  await tasks.run();
 });
 
 function createDirectoryContents(templatePath: string, newProjectPath: string) {
