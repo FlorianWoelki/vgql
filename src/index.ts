@@ -1,5 +1,6 @@
 import * as inquirer from 'inquirer';
 import * as fs from 'fs';
+// import execa from 'execa';
 import { projectInstall } from 'pkg-install';
 import Listr from 'listr';
 
@@ -17,7 +18,7 @@ const QUESTIONS = [
     type: 'input',
     message: 'Project name:',
     validate: (input: string) => {
-      if (/^([A-Za-z\-\_\d])+$/.test(input)) return true;
+      if (/^([a-z\-\_\d])+$/.test(input)) return true;
       else return 'Project name may only include letters, numbers, underscores and characters'
     }
   }
@@ -38,8 +39,8 @@ inquirer.prompt(QUESTIONS).then(async (answers: any) => {
   const tasks = new Listr([
     {
       title: 'Install dependencies',
-      task: () => {
-        projectInstall({
+      task: async () => {
+        await projectInstall({
           cwd: destination,
         });
       },
