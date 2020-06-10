@@ -1,14 +1,15 @@
 import * as inquirer from 'inquirer';
 import * as fs from 'fs';
+import { projectInstall } from 'pkg-install';
 
-const CHOICES = fs.readdirSync(`${__dirname}/../templates`);
+const frontendChoices = fs.readdirSync(`${__dirname}/../templates/front-end`);
 
 const QUESTIONS = [
   {
-    name: 'project-choice',
+    name: 'frontend-choice',
     type: 'list',
-    message: 'What project template would you like to generate?',
-    choices: CHOICES,
+    message: 'What frontend would you like?',
+    choices: frontendChoices,
   },
   {
     name: 'project-name',
@@ -24,13 +25,18 @@ const QUESTIONS = [
 const CURR_DIR = process.cwd();
 
 inquirer.prompt(QUESTIONS).then((answers: any) => {
-  const projectChoice = answers['project-choice'];
+  const projectChoice = answers['frontend-choice'];
   const projectName = answers['project-name'];
-  const templatePath = `${__dirname}/../templates/${projectChoice}`;
+  const templatePath = `${__dirname}/../templates/front-end/${projectChoice}`;
 
-  fs.mkdirSync(`${CURR_DIR}/${projectName}`);
+  const destination = `${CURR_DIR}/${projectName}`;
+  fs.mkdirSync(destination);
 
   createDirectoryContents(templatePath, projectName);
+
+  projectInstall({
+    cwd: destination,
+  });
 });
 
 function createDirectoryContents(templatePath: string, newProjectPath: string) {
