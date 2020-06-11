@@ -59,7 +59,8 @@ function createDirectoryContents(templatePath: string, newProjectPath: string) {
     const stats = fs.statSync(originalFilePath);
 
     if (stats.isFile()) {
-      const contents = fs.readFileSync(originalFilePath, 'utf8');
+      let contents = fs.readFileSync(originalFilePath, 'utf8').replace('project-name', newProjectPath);
+
       const writePath = `${CURR_DIR}/${newProjectPath}/${file}`;
       fs.writeFileSync(writePath, contents, 'utf8');
     } else if (stats.isDirectory()) {
