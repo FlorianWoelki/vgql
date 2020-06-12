@@ -3,6 +3,18 @@ import * as fs from 'fs';
 // import execa from 'execa';
 import { projectInstall } from 'pkg-install';
 import Listr from 'listr';
+import { ncp } from 'ncp';
+
+const copy = (source: string, destination: string) =>
+  new Promise((res, rej) =>
+    ncp(source, destination, (err) => {
+      if (err) {
+        rej(err);
+      } else {
+        res();
+      }
+    }),
+  );
 
 const frontendChoices = fs.readdirSync(`${__dirname}/../templates/front-end`);
 
@@ -26,30 +38,6 @@ const QUESTIONS = [
 
 const CURR_DIR = process.cwd();
 
-function createDirectoryContents(templatePath: string, newProjectPath: string) {
-  const filesToCreate = fs.readdirSync(templatePath);
-
-  filesToCreate.forEach((file) => {
-    const originalFilePath = `${templatePath}/${file}`;
-
-    const stats = fs.statSync(originalFilePath);
-
-    if (stats.isFile()) {
-      const contents = fs.readFileSync(originalFilePath, 'utf8').replace('project-name', newProjectPath);
-
-      const writePath = `${CURR_DIR}/${newProjectPath}/${file}`;
-      fs.writeFileSync(writePath, contents, 'utf8');
-    } else if (stats.isDirectory()) {
-      fs.mkdirSync(`${CURR_DIR}/${newProjectPath}/${file}`);
-
-      createDirectoryContents(
-        `${templatePath}/${file}`,
-        `${newProjectPath}/${file}`,
-      );
-    }
-  });
-}
-
 inquirer.prompt(QUESTIONS).then(async (answers: Record<string, unknown>) => {
   const projectChoice = answers['frontend-choice'] as string;
   const projectName = answers['project-name'] as string;
@@ -58,7 +46,7 @@ inquirer.prompt(QUESTIONS).then(async (answers: Record<string, unknown>) => {
   const destination = `${CURR_DIR}/${projectName}`;
   fs.mkdirSync(destination);
 
-  createDirectoryContents(templatePath, projectName);
+  await copy(templatePath, destination);
 
   const tasks = new Listr([
     {
