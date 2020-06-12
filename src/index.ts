@@ -18,13 +18,37 @@ const QUESTIONS = [
     type: 'input',
     message: 'Project name:',
     validate: (input: string) => {
-      if (/^([a-z\-\_\d])+$/.test(input)) return true;
-      else return 'Project name may only include letters, numbers, underscores and characters'
-    }
-  }
+      if (/^([a-z\-_\d])+$/.test(input)) return true;
+      return 'Project name may only include letters, numbers, underscores and characters';
+    },
+  },
 ];
 
 const CURR_DIR = process.cwd();
+
+function createDirectoryContents(templatePath: string, newProjectPath: string) {
+  const filesToCreate = fs.readdirSync(templatePath);
+
+  filesToCreate.forEach((file) => {
+    const originalFilePath = `${templatePath}/${file}`;
+
+    const stats = fs.statSync(originalFilePath);
+
+    if (stats.isFile()) {
+      const contents = fs.readFileSync(originalFilePath, 'utf8').replace('project-name', newProjectPath);
+
+      const writePath = `${CURR_DIR}/${newProjectPath}/${file}`;
+      fs.writeFileSync(writePath, contents, 'utf8');
+    } else if (stats.isDirectory()) {
+      fs.mkdirSync(`${CURR_DIR}/${newProjectPath}/${file}`);
+
+      createDirectoryContents(
+        `${templatePath}/${file}`,
+        `${newProjectPath}/${file}`,
+      );
+    }
+  });
+}
 
 inquirer.prompt(QUESTIONS).then(async (answers: any) => {
   const projectChoice = answers['frontend-choice'];
@@ -44,32 +68,8 @@ inquirer.prompt(QUESTIONS).then(async (answers: any) => {
           cwd: destination,
         });
       },
-    }
+    },
   ]);
 
   await tasks.run();
 });
-
-function createDirectoryContents(templatePath: string, newProjectPath: string) {
-  const filesToCreate = fs.readdirSync(templatePath);
-
-  filesToCreate.forEach((file) => {
-    const originalFilePath = `${templatePath}/${file}`;
-
-    const stats = fs.statSync(originalFilePath);
-
-    if (stats.isFile()) {
-      let contents = fs.readFileSync(originalFilePath, 'utf8').replace('project-name', newProjectPath);
-
-      const writePath = `${CURR_DIR}/${newProjectPath}/${file}`;
-      fs.writeFileSync(writePath, contents, 'utf8');
-    } else if (stats.isDirectory()) {
-      fs.mkdirSync(`${CURR_DIR}/${newProjectPath}/${file}`);
-      
-      createDirectoryContents(
-        `${templatePath}/${file}`,
-        `${newProjectPath}/${file}`
-      );
-    }
-  });
-}
