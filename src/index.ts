@@ -46,9 +46,13 @@ inquirer.prompt(QUESTIONS).then(async (answers: Record<string, unknown>) => {
   const destination = `${CURR_DIR}/${projectName}`;
   fs.mkdirSync(destination);
 
-  await copy(templatePath, destination);
-
   const tasks = new Listr([
+    {
+      title: 'Generating project',
+      task: async () => {
+        await copy(templatePath, destination);
+      },
+    },
     {
       title: 'Install dependencies',
       task: async () => {
