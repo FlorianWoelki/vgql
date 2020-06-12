@@ -1,8 +1,21 @@
 {
   "name": "vgql",
   "version": "1.0.0",
+  "description": "CLI that generates Vue combined with GraphQL code",
   "main": "index.js",
   "license": "MIT",
+  "author": "Florian Woelki",
+  "keywords": [
+    "vgql",
+    "vue",
+    "cli",
+    "graphql",
+    "nuxt",
+    "apollo"
+  ],
+  "bin": {
+    "vgql": "index.js"
+  },
   "devDependencies": {
     "@types/inquirer": "^6.5.0",
     "@types/ncp": "^2.0.4",
