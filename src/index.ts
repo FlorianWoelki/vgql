@@ -50,9 +50,9 @@ function createDirectoryContents(templatePath: string, newProjectPath: string) {
   });
 }
 
-inquirer.prompt(QUESTIONS).then(async (answers: any) => {
-  const projectChoice = answers['frontend-choice'];
-  const projectName = answers['project-name'];
+inquirer.prompt(QUESTIONS).then(async (answers: Record<string, unknown>) => {
+  const projectChoice = answers['frontend-choice'] as string;
+  const projectName = answers['project-name'] as string;
   const templatePath = `${__dirname}/../templates/front-end/${projectChoice}`;
 
   const destination = `${CURR_DIR}/${projectName}`;
