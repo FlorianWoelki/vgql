@@ -5,13 +5,10 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: 'module',
   },
-  plugins: [
-    '@typescript-eslint',
-  ],
-  extends: [
-    'plugin:@typescript-eslint/recommended',
-    'airbnb-base',
-  ],
+  plugins: ['@typescript-eslint'],
+  extends: ['plugin:@typescript-eslint/recommended', 'airbnb-base'],
   rules: {
+    'implicit-arrow-linebreak': 'off',
+    'function-paren-newline': 'off',
   },
 };
