@@ -5,6 +5,9 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: 'module',
   },
+  env: {
+    jest: true,
+  },
   plugins: ['@typescript-eslint', 'prettier'],
   extends: ['plugin:@typescript-eslint/recommended', 'airbnb-base'],
   rules: {
