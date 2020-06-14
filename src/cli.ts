@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import { projectInstall } from 'pkg-install';
 import Listr from 'listr';
 import { ncp } from 'ncp';
+import renameFileContent from './util';
 
 const copy = (source: string, destination: string) =>
   new Promise((res, rej) =>
@@ -53,6 +54,9 @@ function mainProcess(useDefaultAnswers: boolean): void {
         title: 'Generating project',
         task: async () => {
           await copy(templatePath, destination);
+          renameFileContent(destination, 'package.json', {
+            name: projectName,
+          });
         },
       },
       {
