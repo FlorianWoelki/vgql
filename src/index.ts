@@ -5,10 +5,12 @@ import mainProcess from './cli';
 yargs
   .usage('Usage: $0 <command> [options]')
   .command('$0', 'Generate project', (args) => {
-    const { yes: useDefaultAnswers } = args.argv;
+    const { default: useDefaultAnswers } = args.argv;
     mainProcess(useDefaultAnswers as boolean);
   })
   .help('h')
   .alias('h', 'help')
   .alias('v', 'version')
+  .alias('d', 'default')
+  .describe('default', 'Use default project setup for Vue.js and GraphQL')
   .parse();
