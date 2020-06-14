@@ -1,21 +1,7 @@
 import * as inquirer from 'inquirer';
 import * as fs from 'fs';
 // import execa from 'execa';
-import { projectInstall } from 'pkg-install';
-import Listr from 'listr';
-import { ncp } from 'ncp';
-import renameFileContent from './util';
-
-const copy = (source: string, destination: string) =>
-  new Promise((res, rej) =>
-    ncp(source, destination, (err) => {
-      if (err) {
-        rej(err);
-      } else {
-        res();
-      }
-    }),
-  );
+import { runTasks } from './tasks';
 
 const frontendChoices = fs.readdirSync(`${__dirname}/../templates/front-end`);
 
@@ -40,37 +26,27 @@ const QUESTIONS = [
 const CURR_DIR = process.cwd();
 
 function mainProcess(useDefaultAnswers: boolean): void {
-  console.log(`Use default answers: ${useDefaultAnswers}`);
-  inquirer.prompt(QUESTIONS).then(async (answers: Record<string, unknown>) => {
-    const projectChoice = answers['frontend-choice'] as string;
-    const projectName = answers['project-name'] as string;
-    const templatePath = `${__dirname}/../templates/front-end/${projectChoice}`;
-
-    const destination = `${CURR_DIR}/${projectName}`;
+  if (useDefaultAnswers) {
+    // TODO: Project name specified
+    const destination = `${CURR_DIR}/replace-me`;
+    const templatePath = `${__dirname}/../templates/front-end/nuxtjs`;
     fs.mkdirSync(destination);
 
-    const tasks = new Listr([
-      {
-        title: 'Generating project',
-        task: async () => {
-          await copy(templatePath, destination);
-          renameFileContent(destination, 'package.json', {
-            name: projectName,
-          });
-        },
-      },
-      {
-        title: 'Install dependencies',
-        task: async () => {
-          await projectInstall({
-            cwd: destination,
-          });
-        },
-      },
-    ]);
+    runTasks(templatePath, destination, 'replace-me');
+  } else {
+    inquirer
+      .prompt(QUESTIONS)
+      .then(async (answers: Record<string, unknown>) => {
+        const projectChoice = answers['frontend-choice'] as string;
+        const projectName = answers['project-name'] as string;
+        const templatePath = `${__dirname}/../templates/front-end/${projectChoice}`;
 
-    await tasks.run();
-  });
+        const destination = `${CURR_DIR}/${projectName}`;
+        fs.mkdirSync(destination);
+
+        runTasks(templatePath, destination, projectName);
+      });
+  }
 }
 
 export default mainProcess;
