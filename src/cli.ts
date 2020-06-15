@@ -3,18 +3,9 @@ import * as fs from 'fs';
 // import execa from 'execa';
 import { runTasks } from './tasks';
 import projectNameQuestion from './questions/projectName';
+import frontendChoicesQuestion from './questions/frontendChoices';
 
-const frontendChoices = fs.readdirSync(`${__dirname}/../templates/front-end`);
-
-const QUESTIONS = [
-  {
-    name: 'frontend-choice',
-    type: 'list',
-    message: 'What frontend would you like?',
-    choices: frontendChoices,
-  },
-  projectNameQuestion,
-];
+const QUESTIONS = [frontendChoicesQuestion, projectNameQuestion];
 
 const CURR_DIR = process.cwd();
 
