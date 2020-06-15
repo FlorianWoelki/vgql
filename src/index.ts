@@ -14,5 +14,6 @@ yargs
   .alias('d', 'default')
   .describe('default', 'Use default project setup for Vue.js and GraphQL')
   .alias('n', 'name')
+  .nargs('n', 1)
   .describe('name', 'Specify the name for the project generation')
   .parse();
