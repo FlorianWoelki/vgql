@@ -2,6 +2,7 @@ import * as inquirer from 'inquirer';
 import * as fs from 'fs';
 // import execa from 'execa';
 import { runTasks } from './tasks';
+import projectNameQuestion from './questions/projectName';
 
 const frontendChoices = fs.readdirSync(`${__dirname}/../templates/front-end`);
 
@@ -12,27 +13,28 @@ const QUESTIONS = [
     message: 'What frontend would you like?',
     choices: frontendChoices,
   },
-  {
-    name: 'project-name',
-    type: 'input',
-    message: 'Project name:',
-    validate: (input: string) => {
-      if (/^([a-z\-_\d])+$/.test(input)) return true;
-      return 'Project name may only include letters, numbers, underscores and characters';
-    },
-  },
+  projectNameQuestion,
 ];
 
 const CURR_DIR = process.cwd();
 
-function mainProcess(useDefaultAnswers: boolean): void {
+function mainProcess(useDefaultAnswers: boolean, projectName?: string): void {
   if (useDefaultAnswers) {
-    // TODO: Project name specified
-    const destination = `${CURR_DIR}/replace-me`;
     const templatePath = `${__dirname}/../templates/front-end/nuxtjs`;
-    fs.mkdirSync(destination);
 
-    runTasks(templatePath, destination, 'replace-me');
+    if (!projectName) {
+      inquirer.prompt([projectNameQuestion]).then((value: any) => {
+        const inputProjectName = value['project-name'] as string;
+        const destination = `${CURR_DIR}/${inputProjectName}`;
+        fs.mkdirSync(destination);
+        runTasks(templatePath, destination, inputProjectName);
+      });
+      return;
+    }
+
+    const destination = `${CURR_DIR}/${projectName}`;
+    fs.mkdirSync(destination);
+    runTasks(templatePath, destination, projectName);
   } else {
     inquirer
       .prompt(QUESTIONS)
