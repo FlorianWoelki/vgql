@@ -18,23 +18,20 @@ const QUESTIONS = [
 
 const CURR_DIR = process.cwd();
 
-function mainProcess(useDefaultAnswers: boolean, projectName?: string): void {
+async function mainProcess(useDefaultAnswers: boolean, projectName?: string) {
   if (useDefaultAnswers) {
     const templatePath = `${__dirname}/../templates/front-end/nuxtjs`;
+    let inputProjectName = projectName;
 
-    if (!projectName) {
-      inquirer.prompt([projectNameQuestion]).then((value: any) => {
-        const inputProjectName = value['project-name'] as string;
-        const destination = `${CURR_DIR}/${inputProjectName}`;
-        fs.mkdirSync(destination);
-        runTasks(templatePath, destination, inputProjectName);
-      });
-      return;
+    if (!inputProjectName) {
+      const inputValue = await inquirer.prompt([projectNameQuestion]);
+      const newProjectName = inputValue['project-name'] as string;
+      inputProjectName = newProjectName;
     }
 
-    const destination = `${CURR_DIR}/${projectName}`;
+    const destination = `${CURR_DIR}/${inputProjectName}`;
     fs.mkdirSync(destination);
-    runTasks(templatePath, destination, projectName);
+    runTasks(templatePath, destination, inputProjectName!);
   } else {
     inquirer
       .prompt(QUESTIONS)
