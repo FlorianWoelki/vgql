@@ -6,9 +6,17 @@ import questions from './questions';
 
 const CURR_DIR = process.cwd();
 
+function createProjectDirectories(destination: string): void {
+  fs.mkdirSync(destination);
+  fs.mkdirSync(`${destination}/web`);
+  fs.mkdirSync(`${destination}/server`);
+}
+
 async function mainProcess(useDefaultAnswers: boolean, projectName?: string) {
   if (useDefaultAnswers) {
-    const templatePath = `${__dirname}/../templates/front-end/nuxtjs`;
+    // Default project paths
+    const frontendTemplatePath = `${__dirname}/../templates/front-end/nuxtjs`;
+    const backendTemplatePath = `${__dirname}/../templates/back-end/graphql`;
     let inputProjectName = projectName;
 
     if (!inputProjectName) {
@@ -18,8 +26,13 @@ async function mainProcess(useDefaultAnswers: boolean, projectName?: string) {
     }
 
     const destination = `${CURR_DIR}/${inputProjectName}`;
-    fs.mkdirSync(destination);
-    runTasks(templatePath, '', destination, inputProjectName!);
+    createProjectDirectories(destination);
+    runTasks(
+      frontendTemplatePath,
+      backendTemplatePath,
+      destination,
+      inputProjectName!,
+    );
   } else {
     inquirer.prompt(questions.allQuestions).then(async (answers: any) => {
       const frontendProjectChoice = answers['frontend-choice'] as string;
@@ -29,9 +42,8 @@ async function mainProcess(useDefaultAnswers: boolean, projectName?: string) {
       const backendTemplatePath = `${__dirname}/../templates/back-end/${backendProjectChoice}`;
 
       const destination = `${CURR_DIR}/${projectName}`;
-      fs.mkdirSync(destination);
-      fs.mkdirSync(`${destination}/web`);
-      fs.mkdirSync(`${destination}/server`);
+
+      createProjectDirectories(destination);
 
       runTasks(
         frontendTemplatePath,
