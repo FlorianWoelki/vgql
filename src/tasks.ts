@@ -15,16 +15,21 @@ const copy = (source: string, destination: string) =>
   );
 
 export async function runTasks(
-  templatePath: string,
+  frontendTemplatePath: string,
+  backendTemplatePath: string,
   destination: string,
   projectName: string,
 ) {
   const tasks = new Listr([
     {
-      title: 'Generating project',
+      title: 'Generating projects',
       task: async () => {
-        await copy(templatePath, destination);
-        renameFileContent(destination, 'package.json', {
+        await copy(frontendTemplatePath, `${destination}/web`);
+        await copy(backendTemplatePath, `${destination}/server`);
+        renameFileContent(`${destination}/web`, 'package.json', {
+          name: projectName,
+        });
+        renameFileContent(`${destination}/server`, 'package.json', {
           name: projectName,
         });
       },
@@ -33,7 +38,10 @@ export async function runTasks(
       title: 'Install dependencies',
       task: async () => {
         await projectInstall({
-          cwd: destination,
+          cwd: `${destination}/web`,
+        });
+        await projectInstall({
+          cwd: `${destination}/server`,
         });
       },
     },

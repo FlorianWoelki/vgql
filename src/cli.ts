@@ -19,17 +19,26 @@ async function mainProcess(useDefaultAnswers: boolean, projectName?: string) {
 
     const destination = `${CURR_DIR}/${inputProjectName}`;
     fs.mkdirSync(destination);
-    runTasks(templatePath, destination, inputProjectName!);
+    runTasks(templatePath, '', destination, inputProjectName!);
   } else {
     inquirer.prompt(questions.allQuestions).then(async (answers: any) => {
-      const projectChoice = answers['frontend-choice'] as string;
+      const frontendProjectChoice = answers['frontend-choice'] as string;
+      const backendProjectChoice = answers['backend-choice'] as string;
       const projectName = answers['project-name'] as string;
-      const templatePath = `${__dirname}/../templates/front-end/${projectChoice}`;
+      const frontendTemplatePath = `${__dirname}/../templates/front-end/${frontendProjectChoice}`;
+      const backendTemplatePath = `${__dirname}/../templates/back-end/${backendProjectChoice}`;
 
       const destination = `${CURR_DIR}/${projectName}`;
       fs.mkdirSync(destination);
+      fs.mkdirSync(`${destination}/web`);
+      fs.mkdirSync(`${destination}/server`);
 
-      runTasks(templatePath, destination, projectName);
+      runTasks(
+        frontendTemplatePath,
+        backendTemplatePath,
+        destination,
+        projectName,
+      );
     });
   }
 }
