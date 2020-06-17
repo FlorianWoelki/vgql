@@ -8,7 +8,7 @@
     <HelloWorld msg="Welcome to your Vue.js GraphQL App" />
     <UserList
       v-if="users"
-      :users="users.data"
+      :users="users"
     />
   </div>
 </template>
@@ -28,14 +28,12 @@ export default {
     users: gql`
       query {
         users {
-          data {
-            id
-            name
-            username
-            email
-            phone
-            website
-          }
+          id
+          name
+          username
+          email
+          phone
+          website
         }
       }
     `,
