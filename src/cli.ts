@@ -35,11 +35,12 @@ async function mainProcess(useDefaultAnswers: boolean, projectName?: string) {
     );
   } else {
     inquirer.prompt(questions.allQuestions).then(async (answers: any) => {
+      const languageChoice = answers['language-choice'] as string;
       const frontendProjectChoice = answers['frontend-choice'] as string;
       const backendProjectChoice = answers['backend-choice'] as string;
       const projectName = answers['project-name'] as string;
-      const frontendTemplatePath = `${__dirname}/../templates/front-end/${frontendProjectChoice}`;
-      const backendTemplatePath = `${__dirname}/../templates/back-end/${backendProjectChoice}`;
+      const frontendTemplatePath = `${__dirname}/../templates/${languageChoice}/front-end/${frontendProjectChoice}`;
+      const backendTemplatePath = `${__dirname}/../templates/${languageChoice}/back-end/${backendProjectChoice}`;
 
       const destination = `${CURR_DIR}/${projectName}`;
 
