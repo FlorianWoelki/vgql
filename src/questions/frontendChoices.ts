@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 
 const frontendChoices = fs.readdirSync(
-  `${__dirname}/../../templates/front-end`,
+  `${__dirname}/../../templates/JavaScript/front-end`,
 );
 
 export default {
