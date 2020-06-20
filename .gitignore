@@ -1,2 +1,4 @@
 node_modules
-templates
+templates/JavaScript
+templates/TypeScript/back-end
+templates/TypeScript/front-end
