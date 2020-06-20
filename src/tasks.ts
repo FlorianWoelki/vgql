@@ -1,22 +1,34 @@
 import Listr from 'listr';
 import { projectInstall } from 'pkg-install';
-import { ncp } from 'ncp';
-import renameFileContent from './util';
+import ncpTypes, { ncp } from 'ncp';
+import { renameFileContent, appendToFile, readFromFile } from './util';
 
-const copy = (source: string, destination: string) =>
-  new Promise((res, rej) =>
-    ncp(source, destination, (err) => {
+const copy = (
+  source: string,
+  destination: string,
+  disablePackageFile: boolean = false,
+) =>
+  new Promise((res, rej) => {
+    let options: ncpTypes.Options = {};
+    if (disablePackageFile) {
+      options.filter = (file) => {
+        return !file.includes('package.json');
+      };
+    }
+
+    ncp(source, destination, options, (err) => {
       if (err) {
         rej(err);
       } else {
         res();
       }
-    }),
-  );
+    });
+  });
 
 export async function runTasks(
   frontendTemplatePath: string,
   backendTemplatePath: string,
+  typeormPath: string | undefined,
   destination: string,
   projectName: string,
 ) {
@@ -24,12 +36,21 @@ export async function runTasks(
     {
       title: 'Generating projects',
       task: async () => {
-        await copy(frontendTemplatePath, `${destination}/web`);
         await copy(backendTemplatePath, `${destination}/server`);
-        renameFileContent(`${destination}/web`, 'package.json', {
+        if (typeormPath) {
+          await copy(typeormPath, `${destination}/server`, true);
+          appendToFile(
+            `${destination}/server`,
+            'package.json',
+            'dependencies',
+            readFromFile(typeormPath, 'package.json', 'dependencies'),
+          );
+        }
+        await copy(frontendTemplatePath, `${destination}/web`);
+        renameFileContent(`${destination}/server`, 'package.json', {
           name: projectName,
         });
-        renameFileContent(`${destination}/server`, 'package.json', {
+        renameFileContent(`${destination}/web`, 'package.json', {
           name: projectName,
         });
       },
@@ -38,10 +59,10 @@ export async function runTasks(
       title: 'Install dependencies',
       task: async () => {
         await projectInstall({
-          cwd: `${destination}/web`,
+          cwd: `${destination}/server`,
         });
         await projectInstall({
-          cwd: `${destination}/server`,
+          cwd: `${destination}/web`,
         });
       },
     },

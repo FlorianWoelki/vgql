@@ -30,6 +30,7 @@ async function mainProcess(useDefaultAnswers: boolean, projectName?: string) {
     runTasks(
       frontendTemplatePath,
       backendTemplatePath,
+      undefined,
       destination,
       inputProjectName!,
     );
@@ -51,11 +52,17 @@ async function mainProcess(useDefaultAnswers: boolean, projectName?: string) {
 
       const destination = `${CURR_DIR}/${projectName}`;
 
+      let typeormPath: string | undefined = undefined;
+      if (answers['extra-choice'].length !== 0) {
+        typeormPath = `${__dirname}/../templates/${languageChoice}/extras/${answers['extra-choice'][0]}`;
+      }
+
       createProjectDirectories(destination);
 
       runTasks(
         frontendTemplatePath,
         backendTemplatePath,
+        typeormPath,
         destination,
         projectName,
       );
