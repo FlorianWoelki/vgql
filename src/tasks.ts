@@ -1,7 +1,12 @@
 import Listr from 'listr';
 import { projectInstall } from 'pkg-install';
 import ncpTypes, { ncp } from 'ncp';
-import { renameFileContent, appendToFile, readFromFile } from './util';
+import {
+  renameFileContent,
+  appendToFile,
+  readFromFile,
+  appendLineToFile,
+} from './util';
 
 const copy = (
   source: string,
@@ -36,6 +41,7 @@ export async function runTasks(
     {
       title: 'Generating projects',
       task: async () => {
+        // Append back end stuff
         await copy(backendTemplatePath, `${destination}/server`);
         if (typeormPath) {
           await copy(typeormPath, `${destination}/server`, true);
@@ -45,7 +51,19 @@ export async function runTasks(
             'dependencies',
             readFromFile(typeormPath, 'package.json', 'dependencies'),
           );
+          appendLineToFile(
+            `${destination}/server/src/index.ts`,
+            "import 'reflect-metadata'",
+            "import { createConnection } from 'typeorm';",
+          );
+          appendLineToFile(
+            `${destination}/server/src/index.ts`,
+            'const app = express()',
+            '\n\tawait createConnection();',
+          );
         }
+
+        // Append front end stuff
         await copy(frontendTemplatePath, `${destination}/web`);
         renameFileContent(`${destination}/server`, 'package.json', {
           name: projectName,
