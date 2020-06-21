@@ -1,12 +1,8 @@
 import Listr from 'listr';
 import { projectInstall } from 'pkg-install';
 import ncpTypes, { ncp } from 'ncp';
-import {
-  renameFileContent,
-  appendToFile,
-  readFromFile,
-  appendLineToFile,
-} from './util';
+import { renameFileContent } from './util';
+import typormTransformer from './transformer/typorm';
 
 const copy = (
   source: string,
@@ -45,22 +41,7 @@ export async function runTasks(
         await copy(backendTemplatePath, `${destination}/server`);
         if (typeormPath) {
           await copy(typeormPath, `${destination}/server`, true);
-          appendToFile(
-            `${destination}/server`,
-            'package.json',
-            'dependencies',
-            readFromFile(typeormPath, 'package.json', 'dependencies'),
-          );
-          appendLineToFile(
-            `${destination}/server/src/index.ts`,
-            "import 'reflect-metadata'",
-            "import { createConnection } from 'typeorm';",
-          );
-          appendLineToFile(
-            `${destination}/server/src/index.ts`,
-            'const app = express()',
-            '\n\tawait createConnection();',
-          );
+          typormTransformer(destination, typeormPath);
         }
 
         // Append front end stuff
