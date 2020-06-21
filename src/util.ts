@@ -50,7 +50,7 @@ export function appendLineToFile(
   allLines.forEach((line) => {
     let fileNewLine = line;
     if (line.includes(where)) {
-      fileNewLine += `\n${newLine}\n`;
+      fileNewLine += `\n${newLine}`;
     }
     fs.appendFileSync(path, `${fileNewLine.toString()}\n`);
   });
