@@ -39,3 +39,19 @@ export function appendToFile(
   });
   fs.writeFileSync(path, JSON.stringify(packageData, null, 2));
 }
+
+export function appendLineToFile(
+  path: string,
+  where: string,
+  newLine: string,
+): void {
+  const allLines = fs.readFileSync(path, 'utf8').toString().split('\n');
+  fs.writeFileSync(path, '');
+  allLines.forEach((line) => {
+    let fileNewLine = line;
+    if (line.includes(where)) {
+      fileNewLine += `\n${newLine}\n`;
+    }
+    fs.appendFileSync(path, `${fileNewLine.toString()}\n`);
+  });
+}
