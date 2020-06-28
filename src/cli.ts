@@ -37,15 +37,8 @@ async function mainProcess(useDefaultAnswers: boolean, projectName?: string) {
   } else {
     inquirer.prompt(questions.allQuestions).then(async (answers: any) => {
       const languageChoice = answers['language-choice'] as string;
-      let frontendProjectChoice = answers['frontend-choice'] as string;
-      let backendProjectChoice = answers['backend-choice'] as string;
-      if (languageChoice.toLowerCase() === 'typescript') {
-        frontendProjectChoice += '-ts-template';
-        backendProjectChoice += '-ts-template';
-      } else {
-        frontendProjectChoice += '-template';
-        backendProjectChoice += '-template';
-      }
+      const frontendProjectChoice = answers['frontend-choice'] as string;
+      const backendProjectChoice = answers['backend-choice'] as string;
       const projectName = answers['project-name'] as string;
       const frontendTemplatePath = `${__dirname}/../templates/${languageChoice}/front-end/${frontendProjectChoice}`;
       const backendTemplatePath = `${__dirname}/../templates/${languageChoice}/back-end/${backendProjectChoice}`;
