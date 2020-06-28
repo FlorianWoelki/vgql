@@ -1,4 +1,2 @@
 node_modules
-templates/JavaScript
-templates/TypeScript/back-end
-templates/TypeScript/front-end
+templates/**/yarn.lock
