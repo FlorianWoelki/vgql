@@ -6,7 +6,6 @@
       src="./assets/logo.png"
     >
     <HelloWorld msg="Welcome to your Vue.js GraphQL App" />
-    user {{ users }}
     <UserList
       v-if="users"
       :users="users"
