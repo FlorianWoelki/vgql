@@ -1,5 +1,5 @@
 <a href="https://daycademy.github.io/vueply/">
-    <img src="./assets/vgql_logo.png" alt="Vueply Logo" align="right" height="150" />
+    <img src="https://i.imgur.com/je45bPG.png" alt="vgql-logo" align="right" height="150" />
 </a>
 
 # 🖥 VGQL
