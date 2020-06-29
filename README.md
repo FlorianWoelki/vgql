@@ -2,7 +2,7 @@
     <img src="./assets/vgql_logo.png" alt="Vueply Logo" align="right" height="150" />
 </a>
 
-# 🎨 VGQL
+# 🖥 VGQL
 
 VGQL is used to automatically generate Vue.js web and GraphQL server projects from the command line. It will generate a JavaScript or TypeScript Vue.js and GraphQL (with or without typeorm) setup.
 
