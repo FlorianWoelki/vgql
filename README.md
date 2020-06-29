@@ -61,7 +61,7 @@ vgql
 
 ## 😕 Issues
 
-_Coming Soon_
+For problems directly related to the CLI, [add an issue on GitHub](https://github.com/FlorianWoelki/vgql/issues)
 
 ## 🚀 Releasing
 
