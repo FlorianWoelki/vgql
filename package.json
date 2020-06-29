@@ -1,9 +1,10 @@
 {
   "name": "vgql",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "CLI that generates Vue combined with GraphQL code",
   "main": "index.js",
   "license": "MIT",
+  "preferGlobal": true,
   "author": "Florian Woelki",
   "keywords": [
     "vgql",
@@ -14,7 +15,7 @@
     "apollo"
   ],
   "bin": {
-    "vgql": "index.js"
+    "vgql": "dist/index.js"
   },
   "devDependencies": {
     "@types/inquirer": "^6.5.0",
