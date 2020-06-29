@@ -47,10 +47,10 @@ export async function runTasks(
         // Append front end stuff
         await copy(frontendTemplatePath, `${destination}/web`);
         renameFileContent(`${destination}/server`, 'package.json', {
-          name: projectName,
+          name: `${projectName}-server`,
         });
         renameFileContent(`${destination}/web`, 'package.json', {
-          name: projectName,
+          name: `${projectName}-web`,
         });
       },
     },
