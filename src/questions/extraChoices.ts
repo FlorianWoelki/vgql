@@ -7,7 +7,7 @@ const extraChoices = fs.readdirSync(
 export default {
   name: 'extra-choice',
   type: 'checkbox',
-  message: 'Do you want some salt to your soup?',
+  message: 'You want some sweet extras?',
   choices: extraChoices,
   when: (answers: any) => {
     return (
