@@ -17,6 +17,9 @@
   "bin": {
     "vgql": "dist/index.js"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@FlorianWoelki"
+  },
   "devDependencies": {
     "@types/inquirer": "^6.5.0",
     "@types/jest": "^26.0.0",
