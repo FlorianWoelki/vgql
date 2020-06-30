@@ -1,4 +1,4 @@
-<a href="https://daycademy.github.io/vueply/">
+<a href="https://github.com/FlorianWoelki/vgql">
     <img src="https://i.imgur.com/je45bPG.png" alt="vgql-logo" align="right" height="150" />
 </a>
 
