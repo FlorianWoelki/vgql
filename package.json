@@ -48,7 +48,7 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "build": "npx tsc",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "jest --detectOpenHandles --colors",
+    "test:watch": "jest --watch --detectOpenHandles --colors"
   }
 }
