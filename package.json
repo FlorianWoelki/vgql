@@ -2,6 +2,11 @@
   "name": "vgql",
   "version": "0.1.1",
   "description": "CLI that generates Vue combined with GraphQL code",
+  "repository": "git+https://github.com/FlorianWoelki/vgql.git",
+  "bugs": {
+    "url": "https://github.com/FlorianWoelki/vgql/issues"
+  },
+  "homepage": "https://github.com/FlorianWoelki/vgql",
   "main": "index.js",
   "license": "MIT",
   "preferGlobal": true,
