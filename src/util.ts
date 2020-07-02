@@ -44,13 +44,16 @@ export function appendLineToFile(
   path: string,
   where: string,
   newLine: string,
+  before: boolean = false,
 ): void {
   const allLines = fs.readFileSync(path, 'utf8').toString().split('\n');
+  const regex = new RegExp(`^${where}`, 'gm');
   fs.writeFileSync(path, '');
   allLines.forEach((line) => {
     let fileNewLine = line;
-    if (line.includes(where)) {
-      fileNewLine += `\n${newLine}`;
+    if (line.trim().match(regex)) {
+      if (!before) fileNewLine += `\n${newLine}`;
+      else fileNewLine = `${newLine}\n${fileNewLine}`;
     }
     fs.appendFileSync(path, `${fileNewLine.toString()}\n`);
   });
