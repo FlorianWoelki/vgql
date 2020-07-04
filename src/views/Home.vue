@@ -1,6 +1,6 @@
 <template>
   <div class="relative bg-gray-200 pt-16 pb-16">
-    <div class="absolute b-6 l-16">
+    <div class="absolute bottom-6 left-16">
       <TriangleSVG />
     </div>
     <div class="container">
