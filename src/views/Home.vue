@@ -1,6 +1,6 @@
 <template>
   <div class="relative bg-gray-200 pt-16 pb-16">
-    <div class="absolute bottom-6 left-16">
+    <div class="absolute bottom-6 left-12">
       <TriangleSVG />
     </div>
     <div class="container">
@@ -18,9 +18,11 @@
         </div>
         <div class="col-6 offset-1 p-0">
           <div class="relative bg-gray-900 b-radius-md p-2 pt-4 pb-4">
-            <div class="absolute t-0 l-0 bg-red-600 w-2"></div>
+            <div class="absolute top-0-75 left-0-75 bg-red-600 w-0-75 h-0-75 circle"></div>
+            <div class="yellow-dot absolute top-0-75 left-2 w-0-75 h-0-75 circle"></div>
+            <div class="red-dot absolute top-0-75 bg-green-600 w-0-75 h-0-75 circle"></div>
             <code class="bl-0 bg-none bg-gray-900 text-gray-200">
-  test
+<span class="text-green-400">$</span> vgql
             </code>
           </div>
         </div>
@@ -38,3 +40,12 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.yellow-dot {
+  background-color: #f6e05e;
+}
+.red-dot {
+  left: 52px;
+}
+</style>
