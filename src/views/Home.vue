@@ -27,10 +27,7 @@
             <div class="yellow-dot absolute top-0-75 left-2 w-0-75 h-0-75 circle" />
             <div class="red-dot absolute top-0-75 bg-green-600 w-0-75 h-0-75 circle" />
             <code class="bl-0 bg-none bg-gray-900 text-gray-200">
-              <i class="fas fa-arrow-right text-blue-300" /> vgql<br>
-              <span class="text-green-400">?</span> What language would you prefer<br>
-              <i class="fas fa-chevron-right text-green-400" /> JavaScript<br>
-              <i class="fas fa-chevron-right text-green-400" /> TypeScript
+              <CodeAnimation />
             </code>
           </div>
         </div>
@@ -42,11 +39,13 @@
 <script>
 import TriangleSVG from '@/components/TriangleSVG.vue';
 import RectangleSVG from '@/components/RectangleSVG.vue';
+import CodeAnimation from '@/components/CodeAnimation.vue';
 
 export default {
   components: {
     TriangleSVG,
     RectangleSVG,
+    CodeAnimation,
   },
 };
 </script>
@@ -68,9 +67,4 @@ export default {
   transform: translateX(-100%);
 }
 
-code {
-  i {
-    font-size: 10px;
-  }
-}
 </style>
