@@ -4,6 +4,9 @@
       <div class="translate-l-full absolute bottom-4 left-4">
         <TriangleSVG />
       </div>
+      <div class="translate-r-full absolute top-12 right-24">
+        <RectangleSVG />
+      </div>
       <div class="row align-center p-0">
         <div class="col-5 p-0">
           <h1>VGQL</h1>
@@ -35,10 +38,12 @@
 
 <script>
 import TriangleSVG from '@/components/TriangleSVG.vue';
+import RectangleSVG from '@/components/RectangleSVG.vue';
 
 export default {
   components: {
     TriangleSVG,
+    RectangleSVG,
   },
 };
 </script>
