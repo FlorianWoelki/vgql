@@ -1,10 +1,10 @@
 <template>
   <div class="bg-gray-200">
-    <div class="relative container pb-16 pt-16">
+    <div class="relative container pb-12 pt-12">
       <div class="translate-l-full absolute bottom-4 left-4">
         <TriangleSVG />
       </div>
-      <div class="translate-r-full absolute top-12 right-24">
+      <div class="translate-r-full absolute top-8 right-24">
         <RectangleSVG />
       </div>
       <div class="row align-center p-0">
@@ -27,7 +27,10 @@
             <div class="yellow-dot absolute top-0-75 left-2 w-0-75 h-0-75 circle" />
             <div class="red-dot absolute top-0-75 bg-green-600 w-0-75 h-0-75 circle" />
             <code class="bl-0 bg-none bg-gray-900 text-gray-200">
-              <span class="text-green-400">$</span> vgql
+              <i class="fas fa-arrow-right text-blue-300" /> vgql<br>
+              <span class="text-green-400">?</span> What language would you prefer<br>
+              <i class="fas fa-chevron-right text-green-400" /> JavaScript<br>
+              <i class="fas fa-chevron-right text-green-400" /> TypeScript
             </code>
           </div>
         </div>
@@ -63,5 +66,11 @@ export default {
 .translate-l-full {
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
+}
+
+code {
+  i {
+    font-size: 10px;
+  }
 }
 </style>
