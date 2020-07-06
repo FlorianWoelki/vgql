@@ -43,30 +43,10 @@
         </h4>
 
         <div class="row">
-          <div class="col-3 center mt-2">
-            <img
-              src="@/assets/tech/vuejs.png"
-              alt="vuejs"
-            >
-          </div>
-          <div class="col-3 center mt-2">
-            <img
-              src="@/assets/tech/graphql.png"
-              alt="vuejs"
-            >
-          </div>
-          <div class="col-3 center mt-2">
-            <img
-              src="@/assets/tech/typescript.png"
-              alt="vuejs"
-            >
-          </div>
-          <div class="col-3 center mt-2">
-            <img
-              src="@/assets/tech/javascript.png"
-              alt="vuejs"
-            >
-          </div>
+          <UsedTech image="vuejs" />
+          <UsedTech image="graphql" />
+          <UsedTech image="typescript" />
+          <UsedTech image="javascript" />
         </div>
       </div>
     </div>
@@ -77,12 +57,14 @@
 import TriangleSVG from '@/components/TriangleSVG.vue';
 import RectangleSVG from '@/components/RectangleSVG.vue';
 import CodeAnimation from '@/components/CodeAnimation.vue';
+import UsedTech from '@/components/UsedTech.vue';
 
 export default {
   components: {
     TriangleSVG,
     RectangleSVG,
     CodeAnimation,
+    UsedTech,
   },
 };
 </script>
@@ -102,16 +84,5 @@ export default {
 .translate-l-full {
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
-}
-
-img {
-  width: 100px;
-  height: 100px;
-  -webkit-filter: grayscale(100%);
-  -moz-filter: grayscale(100%);
-  -o-filter: grayscale(100%);
-  -ms-filter: grayscale(100%);
-  filter: grayscale(100%);
-  opacity: 0.333;
 }
 </style>
