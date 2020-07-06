@@ -4,7 +4,7 @@
       <div class="translate-l-full absolute bottom-4 left-4">
         <TriangleSVG />
       </div>
-      <div class="translate-r-full absolute top-8 right-24">
+      <div class="xs-hide md-hide translate-r-full absolute top-8 right-24">
         <RectangleSVG />
       </div>
       <div class="row align-center p-0">
@@ -17,7 +17,7 @@
             <span class="underline-indigo">create</span>
             your next Vue.js GraphQL project.
           </p>
-          <button class="mt-1-5">
+          <button class="mt-1-5 mb-1-5">
             Create your project
           </button>
         </div>
