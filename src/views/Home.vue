@@ -50,6 +50,20 @@
         </div>
       </div>
     </div>
+
+    <div class="relative container mt-6">
+      <div class="absolute translate-r-full top-0 right-2">
+        <TriangleSVG />
+      </div>
+      <h5 class="font-normal text-center mb-0">
+        Installing is
+        <span class="underline-indigo">as simple</span>
+        as using it
+      </h5>
+      <h2 class="text-center mt-0-5">
+        Install Instructions
+      </h2>
+    </div>
   </section>
 </template>
 
