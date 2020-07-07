@@ -20,8 +20,8 @@ export default {
 
 <style lang="scss">
 img {
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   -webkit-filter: grayscale(100%);
   -moz-filter: grayscale(100%);
   -o-filter: grayscale(100%);
