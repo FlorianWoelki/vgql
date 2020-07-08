@@ -3,7 +3,6 @@ import * as fs from 'fs';
 // import execa from 'execa';
 import runTasks from './tasks';
 import questions from './questions';
-import { AnswersType } from './@types/AnswersType';
 
 const CURR_DIR = process.cwd();
 
@@ -36,7 +35,7 @@ async function mainProcess(useDefaultAnswers: boolean, projectName?: string): Pr
       inputProjectName,
     );
   } else {
-    inquirer.prompt(questions.allQuestions).then(async (answers: any) => {
+    inquirer.prompt(questions.allQuestions).then(async (answers: inquirer.Answers) => {
       const languageChoice = answers['language-choice'] as string;
       const frontendProjectChoice = answers['frontend-choice'] as string;
       const backendProjectChoice = answers['backend-choice'] as string;
