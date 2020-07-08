@@ -23,14 +23,12 @@
             </button>
           </div>
           <div class="col-6 offset-1 p-0">
-            <div class="relative bg-gray-900 b-radius-md p-2 pt-4 pb-4">
+            <CodePreview>
               <div class="absolute top-0-75 left-0-75 bg-red-600 w-0-75 h-0-75 circle" />
               <div class="yellow-dot absolute top-0-75 left-2 w-0-75 h-0-75 circle" />
               <div class="red-dot absolute top-0-75 bg-green-600 w-0-75 h-0-75 circle" />
-              <code class="bl-0 bg-none bg-gray-900 text-gray-200">
-                <CodeAnimation />
-              </code>
-            </div>
+              <CodeAnimation />
+            </CodePreview>
           </div>
         </div>
       </div>
@@ -65,22 +63,20 @@
       </h2>
 
       <div class="row mt-4 align-center">
-        <div class="col-6">
-          <h6 class="flex align-center font-normal">
-            <h5 class="underline-indigo mr-1">
+        <div class="col-5 offset-1">
+          <h6 class="flex align-flex-start font-normal">
+            <h5 class="underline-indigo mr-1 mt-0 mb-0">
               1.
             </h5>
             Simply install the vgql CLI with yarn or npm.
           </h6>
         </div>
         <div class="col-6">
-          <div class="relative bg-gray-900 b-radius-md p-2 pt-2 pb-2 w-36">
-            <code class="bl-0 bg-none bg-gray-900 text-gray-200">
-              yarn global add vgql<br>
-              OR<br>
-              npm install -g vgql
-            </code>
-          </div>
+          <CodePreview>
+            yarn global add vgql<br>
+            OR<br>
+            npm install -g vgql
+          </CodePreview>
         </div>
       </div>
     </div>
@@ -92,6 +88,7 @@ import TriangleSVG from '@/components/TriangleSVG.vue';
 import RectangleSVG from '@/components/RectangleSVG.vue';
 import CodeAnimation from '@/components/CodeAnimation.vue';
 import UsedTech from '@/components/UsedTech.vue';
+import CodePreview from '@/components/CodePreview.vue';
 
 export default {
   components: {
@@ -99,6 +96,7 @@ export default {
     RectangleSVG,
     CodeAnimation,
     UsedTech,
+    CodePreview,
   },
 };
 </script>
