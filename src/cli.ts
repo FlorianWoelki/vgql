@@ -1,7 +1,7 @@
 import * as inquirer from 'inquirer';
 import * as fs from 'fs';
 // import execa from 'execa';
-import { runTasks } from './tasks';
+import runTasks from './tasks';
 import questions from './questions';
 
 const CURR_DIR = process.cwd();
@@ -12,7 +12,7 @@ function createProjectDirectories(destination: string): void {
   fs.mkdirSync(`${destination}/server`);
 }
 
-async function mainProcess(useDefaultAnswers: boolean, projectName?: string) {
+async function mainProcess(useDefaultAnswers: boolean, projectName?: string): Promise<any> {
   if (useDefaultAnswers) {
     // Default project paths
     const frontendTemplatePath = `${__dirname}/../templates/front-end/nuxtjs`;
@@ -32,20 +32,20 @@ async function mainProcess(useDefaultAnswers: boolean, projectName?: string) {
       backendTemplatePath,
       undefined,
       destination,
-      inputProjectName!,
+      inputProjectName,
     );
   } else {
     inquirer.prompt(questions.allQuestions).then(async (answers: any) => {
       const languageChoice = answers['language-choice'] as string;
       const frontendProjectChoice = answers['frontend-choice'] as string;
       const backendProjectChoice = answers['backend-choice'] as string;
-      const projectName = answers['project-name'] as string;
+      const projectNameAnswer = answers['project-name'] as string;
       const frontendTemplatePath = `${__dirname}/../templates/${languageChoice}/front-end/${frontendProjectChoice}`;
       const backendTemplatePath = `${__dirname}/../templates/${languageChoice}/back-end/${backendProjectChoice}`;
 
-      const destination = `${CURR_DIR}/${projectName}`;
+      const destination = `${CURR_DIR}/${projectNameAnswer}`;
 
-      let typeormPath: string | undefined = undefined;
+      let typeormPath: string | undefined;
       if (answers['extra-choice'] && answers['extra-choice'].length !== 0) {
         typeormPath = `${__dirname}/../templates/${languageChoice}/extras/${answers['extra-choice'][0]}`;
       }
@@ -57,7 +57,7 @@ async function mainProcess(useDefaultAnswers: boolean, projectName?: string) {
         backendTemplatePath,
         typeormPath,
         destination,
-        projectName,
+        projectNameAnswer,
       );
     });
   }

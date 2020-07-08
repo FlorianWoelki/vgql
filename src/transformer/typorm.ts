@@ -1,6 +1,6 @@
 import { appendToFile, appendLineToFile, readFromFile } from '../util';
 
-export default (destination: string, typeormPath: string) => {
+export default (destination: string, typeormPath: string): void => {
   // Setup Typeorm in package.json and index file
   appendToFile(
     `${destination}/server`,

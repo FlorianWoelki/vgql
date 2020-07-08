@@ -44,7 +44,7 @@ export function appendLineToFile(
   path: string,
   where: string,
   newLine: string,
-  before: boolean = false,
+  before = false,
 ): void {
   const allLines = fs.readFileSync(path, 'utf8').toString().split('\n');
   const regex = new RegExp(`^${where}`, 'gm');

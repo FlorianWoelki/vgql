@@ -7,14 +7,12 @@ import typormTransformer from './transformer/typorm';
 const copy = (
   source: string,
   destination: string,
-  disablePackageFile: boolean = false,
+  disablePackageFile = false,
 ) =>
   new Promise((res, rej) => {
-    let options: ncpTypes.Options = {};
+    const options: ncpTypes.Options = {};
     if (disablePackageFile) {
-      options.filter = (file) => {
-        return !file.includes('package.json');
-      };
+      options.filter = (file) => !file.includes('package.json');
     }
 
     ncp(source, destination, options, (err) => {
@@ -26,13 +24,13 @@ const copy = (
     });
   });
 
-export async function runTasks(
+export default async function runTasks(
   frontendTemplatePath: string,
   backendTemplatePath: string,
   typeormPath: string | undefined,
   destination: string,
   projectName: string,
-) {
+): Promise<any> {
   const tasks = new Listr([
     {
       title: 'Generating projects',
