@@ -63,6 +63,26 @@
       <h2 class="text-center mt-0-5">
         Install Instructions
       </h2>
+
+      <div class="row mt-4 align-center">
+        <div class="col-6">
+          <h6 class="flex align-center font-normal">
+            <h5 class="underline-indigo mr-1">
+              1.
+            </h5>
+            Simply install the vgql CLI with yarn or npm.
+          </h6>
+        </div>
+        <div class="col-6">
+          <div class="relative bg-gray-900 b-radius-md p-2 pt-2 pb-2 w-36">
+            <code class="bl-0 bg-none bg-gray-900 text-gray-200">
+              yarn global add vgql<br>
+              OR<br>
+              npm install -g vgql
+            </code>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
