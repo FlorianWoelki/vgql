@@ -3,6 +3,7 @@ import * as fs from 'fs';
 // import execa from 'execa';
 import runTasks from './tasks';
 import questions from './questions';
+import { AnswersType } from './@types/AnswersType';
 
 const CURR_DIR = process.cwd();
 
