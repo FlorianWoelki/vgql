@@ -1,5 +1,5 @@
 <template>
-  <div class="col-3 center mt-2">
+  <div class="col-3 center mt-1-5">
     <img
       :src="require(`@/assets/tech/${image}.png`)"
       alt="vuejs"

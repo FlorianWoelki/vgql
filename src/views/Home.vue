@@ -38,9 +38,9 @@
 
     <div class="bg-gray-300">
       <div class="container pt-3 pb-3">
-        <h4 class="text-center mt-0 mb-0 text-gray-500 font-normal">
+        <h5 class="text-center mt-0 mb-0 text-gray-500 font-normal">
           VGQL supports this tech
-        </h4>
+        </h5>
 
         <div class="row">
           <UsedTech image="vuejs" />
