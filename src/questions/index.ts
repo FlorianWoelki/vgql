@@ -2,7 +2,7 @@ import projectNameQuestion from './projectName';
 import frontendChoicesQuestion from './frontendChoices';
 import backendChoicesQuestion from './backendChoices';
 import languageChoicesQuestion from './languageChoices';
-import extraChoices from './extraChoices';
+import ormChoices from './ormChoices';
 
 export default {
   projectNameQuestion,
@@ -10,7 +10,7 @@ export default {
     languageChoicesQuestion,
     frontendChoicesQuestion,
     backendChoicesQuestion,
-    extraChoices,
+    ormChoices,
     projectNameQuestion,
   ],
 };
