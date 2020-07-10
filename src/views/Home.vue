@@ -72,7 +72,7 @@
           </h6>
         </div>
         <div class="col-6">
-          <CodePreview>
+          <CodePreview no-left-padding>
             yarn global add vgql<br>
             OR<br>
             npm install -g vgql
