@@ -62,23 +62,22 @@
         Install Instructions
       </h2>
 
-      <div class="row mt-4 align-center">
-        <div class="col-5 offset-1">
-          <h6 class="flex align-flex-start font-normal">
-            <h5 class="underline-indigo mr-1 mt-0 mb-0">
-              1.
-            </h5>
-            Simply install the vgql CLI with yarn or npm.
-          </h6>
-        </div>
-        <div class="col-6">
-          <CodePreview no-left-padding>
-            yarn global add vgql<br>
-            OR<br>
-            npm install -g vgql
-          </CodePreview>
-        </div>
-      </div>
+      <InstallationStep
+        class="mt-4"
+        instruction="Simply install the vgql CLI with yarn or npm"
+        :step="1"
+      >
+        $ yarn global add vgql<br>
+        OR<br>
+        $ npm install -g vgql
+      </InstallationStep>
+      <InstallationStep
+        class="mt-1"
+        instruction="Run the CLI with a single and simple command"
+        :step="2"
+      >
+        $ vgql
+      </InstallationStep>
     </div>
   </section>
 </template>
@@ -89,6 +88,7 @@ import RectangleSVG from '@/components/RectangleSVG.vue';
 import CodeAnimation from '@/components/CodeAnimation.vue';
 import UsedTech from '@/components/UsedTech.vue';
 import CodePreview from '@/components/CodePreview.vue';
+import InstallationStep from '@/components/InstallationStep.vue';
 
 export default {
   components: {
@@ -97,6 +97,7 @@ export default {
     CodeAnimation,
     UsedTech,
     CodePreview,
+    InstallationStep,
   },
 };
 </script>
