@@ -91,8 +91,8 @@
           href="#"
         >YACSS</a>.
         Made with
-        <span class="text-red-500 animated pulse">
-          <i class="fas fa-heart" />
+        <span class="text-red-500 ml-0-25 mr-0-25">
+          <i class="fas fa-heart animated pulse" />
         </span>
         by
         <a
