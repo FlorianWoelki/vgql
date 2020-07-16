@@ -67,16 +67,16 @@
         instruction="Simply install the vgql CLI with yarn or npm"
         :step="1"
       >
-        $ yarn global add vgql<br>
+        <span class="text-green-400">$</span> yarn global add vgql<br>
         OR<br>
-        $ npm install -g vgql
+        <span class="text-green-400">$</span> npm install -g vgql
       </InstallationStep>
       <InstallationStep
         class="mt-1"
         instruction="Run the CLI with a single and simple command"
         :step="2"
       >
-        $ vgql
+        <span class="text-green-400">$</span> vgql
       </InstallationStep>
     </div>
   </section>
