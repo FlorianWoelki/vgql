@@ -49,7 +49,7 @@
       </div>
     </div>
 
-    <div class="relative container mt-6">
+    <div class="relative container mt-6 mb-6">
       <div class="absolute translate-r-full top-0 right-2">
         <TriangleSVG />
       </div>
@@ -79,6 +79,28 @@
         <span class="text-green-400">$</span> vgql
       </InstallationStep>
     </div>
+
+    <footer class="mt-0">
+      <h3 class="text-white mb-1">
+        VGQL
+      </h3>
+      <p>
+        Powered by
+        <a
+          target="_blank"
+          href="#"
+        >YACSS</a>.
+        Made with
+        <span class="text-red-500 animated pulse">
+          <i class="fas fa-heart" />
+        </span>
+        by
+        <a
+          target="_blank"
+          href="#"
+        >Florian Woelki</a>
+      </p>
+    </footer>
   </section>
 </template>
 
