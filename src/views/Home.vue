@@ -88,7 +88,7 @@
         Powered by
         <a
           target="_blank"
-          href="#"
+          href="https://github.com/FlorianWoelki/YACSS/"
         >YACSS</a>.
         Made with
         <span class="text-red-500 ml-0-25 mr-0-25">
@@ -97,7 +97,7 @@
         by
         <a
           target="_blank"
-          href="#"
+          href="https://github.com/FlorianWoelki/"
         >Florian Woelki</a>
       </p>
     </footer>
