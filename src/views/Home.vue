@@ -1,11 +1,11 @@
 <template>
   <section>
     <div class="bg-gray-200">
-      <div class="relative container pb-12 pt-12 mb-0">
+      <div class="relative container pb-16 pt-16 mb-0">
         <div class="translate-l-full absolute bottom-4 left-4">
           <TriangleSVG />
         </div>
-        <div class="xs-hide md-hide translate-r-full absolute top-8 right-24">
+        <div class="xs-hide md-hide translate-r-full absolute top-12 right-24">
           <RectangleSVG />
         </div>
         <div class="row align-center p-0">
