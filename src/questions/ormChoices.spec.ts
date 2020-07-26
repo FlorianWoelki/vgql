@@ -5,7 +5,7 @@ describe('Ask for orm choices', () => {
     const result = ormChoices;
 
     expect(result).toMatchObject({
-      type: 'checkbox',
+      type: 'list',
       name: 'orm-choice',
     });
   });
