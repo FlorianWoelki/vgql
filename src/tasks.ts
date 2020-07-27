@@ -32,6 +32,7 @@ export default async function runTasks(
   destination: string,
   extraChoices: string[],
   projectName: string,
+  language: string,
 ): Promise<any> {
   const tasks = new Listr([
     {
@@ -56,7 +57,7 @@ export default async function runTasks(
         extraChoices.forEach(async (extraChoice) => {
           const extraChoicePath = `${__dirname}/../templates/Extras/${extraChoice}`;
           await copy(extraChoicePath, `${destination}/web`, true);
-          extraChoiceTransformer(destination, extraChoicePath);
+          extraChoiceTransformer(language, destination, extraChoicePath);
         });
       },
     },

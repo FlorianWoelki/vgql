@@ -34,6 +34,7 @@ async function mainProcess(useDefaultAnswers: boolean, projectName?: string): Pr
       destination,
       [],
       inputProjectName,
+      'javascript',
     );
   } else {
     inquirer.prompt(questions.allQuestions).then(async (answers: inquirer.Answers) => {
@@ -61,6 +62,7 @@ async function mainProcess(useDefaultAnswers: boolean, projectName?: string): Pr
         destination,
         extraChoices,
         projectNameAnswer,
+        languageChoice.toLowerCase(),
       );
     });
   }
