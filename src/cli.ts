@@ -32,6 +32,7 @@ async function mainProcess(useDefaultAnswers: boolean, projectName?: string): Pr
       backendTemplatePath,
       undefined,
       destination,
+      [],
       inputProjectName,
     );
   } else {
@@ -40,6 +41,7 @@ async function mainProcess(useDefaultAnswers: boolean, projectName?: string): Pr
       const frontendProjectChoice = answers['frontend-choice'] as string;
       const backendProjectChoice = answers['backend-choice'] as string;
       const projectNameAnswer = answers['project-name'] as string;
+      const extraChoices = answers['extra-choices'] as string[];
       const frontendTemplatePath = `${__dirname}/../templates/${languageChoice}/front-end/${frontendProjectChoice}`;
       const backendTemplatePath = `${__dirname}/../templates/${languageChoice}/back-end/${backendProjectChoice}`;
 
@@ -57,6 +59,7 @@ async function mainProcess(useDefaultAnswers: boolean, projectName?: string): Pr
         backendTemplatePath,
         typeormPath,
         destination,
+        extraChoices,
         projectNameAnswer,
       );
     });

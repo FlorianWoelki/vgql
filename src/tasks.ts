@@ -3,6 +3,7 @@ import { projectInstall } from 'pkg-install';
 import ncpTypes, { ncp } from 'ncp';
 import { renameFileContent } from './util';
 import typormTransformer from './transformer/typorm';
+import extraChoiceTransformer from './transformer/extraChoice';
 
 const copy = (
   source: string,
@@ -29,6 +30,7 @@ export default async function runTasks(
   backendTemplatePath: string,
   typeormPath: string | undefined,
   destination: string,
+  extraChoices: string[],
   projectName: string,
 ): Promise<any> {
   const tasks = new Listr([
@@ -49,6 +51,12 @@ export default async function runTasks(
         });
         renameFileContent(`${destination}/web`, 'package.json', {
           name: `${projectName}-web`,
+        });
+
+        extraChoices.forEach(async (extraChoice) => {
+          const extraChoicePath = `${__dirname}/../templates/Extras/${extraChoice}`;
+          await copy(extraChoicePath, `${destination}/web`, true);
+          extraChoiceTransformer(destination, extraChoicePath);
         });
       },
     },
