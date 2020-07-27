@@ -15,8 +15,8 @@ function createProjectDirectories(destination: string): void {
 async function mainProcess(useDefaultAnswers: boolean, projectName?: string): Promise<any> {
   if (useDefaultAnswers) {
     // Default project paths
-    const frontendTemplatePath = `${__dirname}/../templates/front-end/nuxtjs`;
-    const backendTemplatePath = `${__dirname}/../templates/back-end/graphql`;
+    const frontendTemplatePath = `${__dirname}/../templates/JavaScript/front-end/vuejs`;
+    const backendTemplatePath = `${__dirname}/../templates/JavaScript/back-end/graphql`;
     let inputProjectName = projectName;
 
     if (!inputProjectName) {
