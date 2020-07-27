@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 
-const languageChoices = fs.readdirSync(`${__dirname}/../../templates`);
+const languageChoices = fs.readdirSync(`${__dirname}/../../templates`).filter((item) => item !== 'Extras');
 
 export default {
   name: 'language-choice',
