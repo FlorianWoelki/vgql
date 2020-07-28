@@ -1,15 +1,15 @@
 import * as fs from 'fs';
 import { Answers } from 'inquirer';
 
-const ormChoices = fs.readdirSync(
-  `${__dirname}/../../templates/TypeScript/orm`,
+const typeormDbChoices = fs.readdirSync(
+  `${__dirname}/../../templates/TypeScript/typeorm-db`,
 );
 
 export default {
-  name: 'orm-choice',
+  name: 'typeorm-db-choice',
   type: 'list',
-  message: 'Do you want an extra ORM?',
-  choices: ormChoices,
+  message: 'What DB do you want to use with TypeORM?',
+  choices: typeormDbChoices,
   when: (answers: Answers): boolean => (
     (answers['language-choice'] as string).toLowerCase() === 'typescript'
   ),

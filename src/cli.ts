@@ -49,8 +49,8 @@ async function mainProcess(useDefaultAnswers: boolean, projectName?: string): Pr
       const destination = `${CURR_DIR}/${projectNameAnswer}`;
 
       let typeormPath: string | undefined;
-      if (answers['extra-choice'] && answers['extra-choice'].length !== 0) {
-        typeormPath = `${__dirname}/../templates/${languageChoice}/extras/${answers['extra-choice'][0]}`;
+      if (answers['typeorm-db-choice']) {
+        typeormPath = `${__dirname}/../templates/${languageChoice}/typeorm-db/${answers['typeorm-db-choice']}`;
       }
 
       createProjectDirectories(destination);
