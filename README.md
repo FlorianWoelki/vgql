@@ -58,6 +58,7 @@ vgql
 #### Extras
 
 - [TypeORM](https://typeorm.io/) _for now in combination with postgres_ - easily accessing databases
+- [TailwindCSS](http://tailwindcss.com/) - for easy use with utility classes
 
 ## 😕 Issues
 
