@@ -3,6 +3,6 @@
     "@fullhuman/postcss-purgecss": "^2.3.0",
     "autoprefixer": "^9.8.5",
     "purgecss": "^2.3.0",
-    "tailwindcss": "^1.5.2"
+    "tailwindcss": "^1.6.0"
   }
 }
